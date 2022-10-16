@@ -1,5 +1,5 @@
 <template>
-  <b-navbar type="light" variant="white" class="shadow-sm px-lg-5">
+  <b-navbar type="light" variant="white" class="shadow-sm px-lg-5" fixed="top">
     <b-navbar-nav class="ml-auto pr-0">
       <img src="@/assets/img/achareh-logo.svg" />
     </b-navbar-nav>

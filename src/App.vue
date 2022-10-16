@@ -1,7 +1,9 @@
 <template>
-  <div id="app" class="bg-grey">
+  <div id="app" class="bg-grey d-flex">
     <layout> </layout>
-    <router-view />
+    <div class="body-container w-100">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -19,5 +21,10 @@ export default {
 <style lang="scss">
 #app {
   height: 100vh;
+  .body-container {
+    margin-top: 56px;
+    overflow-y: scroll;
+    direction: ltr;
+  }
 }
 </style>
