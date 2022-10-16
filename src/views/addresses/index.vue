@@ -1,6 +1,7 @@
 <template>
-  <b-col class="p-3">
-    <h6>آدرس‌ها و مشخصات</h6>
+  <b-col cols="12" class="p-3 px-lg-large pt-lg-5">
+    <h6 class="mb-3 txt-dark">آدرس‌ها و مشخصات</h6>
+    <addresse-card />
     <addresse-card />
   </b-col>
 </template>
