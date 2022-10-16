@@ -14,6 +14,11 @@ const routes = [
     name: "addresses",
     component: addresses,
   },
+  {
+    path: "/addresses/add",
+    name: "addAddresses",
+    component: () => import("@/views/addresses/add.vue"),
+  },
 ];
 
 const router = new VueRouter({

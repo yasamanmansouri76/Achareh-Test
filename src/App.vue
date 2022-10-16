@@ -24,7 +24,6 @@ export default {
   .body-container {
     margin-top: 56px;
     overflow-y: scroll;
-    direction: ltr;
   }
 }
 </style>
