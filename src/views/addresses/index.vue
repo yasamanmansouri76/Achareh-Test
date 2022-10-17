@@ -39,10 +39,14 @@ export default {
     }),
     loadData() {
       this.isLoading = true;
-      this.getAddresses().then((response) => {
-        this.addresses = response;
-        this.isLoading = false;
-      });
+      this.getAddresses()
+        .then((response) => {
+          this.addresses = response;
+          this.isLoading = false;
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
     },
   },
   created() {

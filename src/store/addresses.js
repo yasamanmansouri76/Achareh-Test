@@ -1,11 +1,13 @@
-import Api from "./server";
+import api from "@/services/interceptors";
+
 export default {
   namespaced: true,
   actions: {
     getAddresses() {
-      return Api()
-        .get("/address")
-        .then((response) => response.data);
+      return api.get("/address").then((response) => response.data);
+    },
+    addAddresses(context, payload) {
+      return api.post("/address", payload).then((response) => response);
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="add-address-cmp">
     <h6 class="mb-3 txt-dark">ثبت آدرس</h6>
-    <b-form class="p-3 bg-white rounded mb-5 float-right">
+    <b-form class="p-3 bg-white rounded mb-5 float-right pb-5 pb-lg-3">
       <span class="txt-small txt-dark font-weight-bold mb-3 d-block">
         لطفا مشخصات و آدرس خود را وارد کنید
       </span>
@@ -18,6 +18,10 @@
               aria-describedby="first_name-feedback"
               data-vv-as="نام"
             ></b-form-input>
+            <cancel-button
+              v-if="formData.first_name !== ''"
+              @empty="empty('first_name')"
+            />
             <form-error :errors-text="errors.collect('first_name')" />
           </b-form-group>
         </b-col>
@@ -33,6 +37,10 @@
               aria-describedby="last_name-feedback"
               data-vv-as="نام خانوادگی"
             ></b-form-input>
+            <cancel-button
+              v-if="formData.last_name !== ''"
+              @empty="empty('last_name')"
+            />
             <form-error :errors-text="errors.collect('last_name')" />
           </b-form-group>
         </b-col>
@@ -47,11 +55,15 @@
               v-model="formData.coordinate_mobile"
               name="coordinate_mobile"
               placeholder="مثال 091212345678"
-              v-validate="{ required: true, length: 11 }"
+              v-validate="{ required: true, length: 11, numeric: true }"
               :state="validateState('coordinate_mobile')"
               aria-describedby="coordinate_mobile-feedback"
               data-vv-as="شماره تلفن همراه"
             ></b-form-input>
+            <cancel-button
+              v-if="formData.coordinate_mobile !== ''"
+              @empty="empty('coordinate_mobile')"
+            />
             <form-error :errors-text="errors.collect('coordinate_mobile')" />
           </b-form-group>
         </b-col>
@@ -74,11 +86,15 @@
               v-model="formData.coordinate_phone_number"
               name="coordinate_phone_number"
               placeholder="مثال 02144256870"
-              v-validate="{ length: 11 }"
+              v-validate="{ length: 11, numeric: true }"
               :state="validateState('coordinate_phone_number')"
               aria-describedby="coordinate_phone_number-feedback"
               data-vv-as="شماره تلفن ثابت"
             ></b-form-input>
+            <cancel-button
+              v-if="formData.coordinate_phone_number !== ''"
+              @empty="empty('coordinate_phone_number')"
+            />
             <form-error
               :errors-text="errors.collect('coordinate_phone_number')"
             />
@@ -97,6 +113,10 @@
               aria-describedby="address-feedback"
               data-vv-as="آدرس"
             ></b-form-textarea>
+            <cancel-button
+              v-if="formData.address !== ''"
+              @empty="empty('address')"
+            />
             <form-error :errors-text="errors.collect('address')" />
           </b-form-group>
         </b-col>
@@ -124,6 +144,7 @@
 
 <script>
 import formError from "@/components/shared/form-error.vue";
+import cancelButton from "@/components/shared/cancel-button.vue";
 
 export default {
   name: "FormAddresses",
@@ -133,21 +154,19 @@ export default {
         { value: "female", name: "خانم" },
         { value: "male", name: "آقا" },
       ],
-      formData: {
-        first_name: "",
-        last_name: "",
-        coordinate_mobile: "",
-        coordinate_phone_number: "",
-        address: "",
-        region: "1",
-        lat: "",
-        lng: "",
-        gender: "female",
-      },
+      formData: this.value,
     };
+  },
+  props: {
+    value: {
+      type: Object,
+      default: () => {},
+      required: true,
+    },
   },
   components: {
     formError,
+    cancelButton,
   },
   methods: {
     handleSubmit() {
@@ -155,8 +174,20 @@ export default {
         if (!result) {
           return;
         }
-        this.$emit("submit", this.formData);
+        this.$emit("submit");
       });
+    },
+    empty(key) {
+      this.formData[key] = "";
+      this.$emit("input", this.formData);
+    },
+  },
+  watch: {
+    formData: {
+      handler: function (newValue) {
+        this.$emit("input", newValue);
+      },
+      deep: true,
     },
   },
 };
@@ -165,6 +196,8 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .add-address-cmp {
+  .empty-btn {
+  }
   label,
   legend,
   .invalid-feedback {

@@ -4,10 +4,16 @@
       <img src="@/assets/img/achareh-logo.svg" />
     </b-navbar-nav>
     <b-navbar-nav>
-      <router-link class="pr-4 py-2 txt-primary" :to="{ name: 'addresses' }">
+      <router-link
+        class="pr-4 py-2 txt-primary txt-mid"
+        :to="{ name: 'addresses' }"
+      >
         مشاهده آدرس‌ها
       </router-link>
-      <router-link class="pr-4 py-2 txt-primary" :to="{ name: 'addAddresses' }">
+      <router-link
+        class="pr-4 py-2 txt-primary txt-mid"
+        :to="{ name: 'addAddresses' }"
+      >
         ثبت آدرس
       </router-link>
     </b-navbar-nav>

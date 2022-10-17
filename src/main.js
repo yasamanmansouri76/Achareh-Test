@@ -6,8 +6,8 @@ import router from "./router";
 import store from "./store";
 import globalMixin from "@/mixins/global.js";
 import validatorMessages from "@/plugins/validator.js";
-
 import "@/assets/styles/main.scss";
+import "leaflet/dist/leaflet.css";
 
 Vue.config.productionTip = false;
 

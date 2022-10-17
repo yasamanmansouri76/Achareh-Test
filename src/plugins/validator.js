@@ -18,4 +18,7 @@ export default {
       fieldName + " " + "باید دارای" + " " + params[0] + " " + "کاراکتر باشد"
     );
   },
+  numeric() {
+    return "فرمت وارد شده نادرست است";
+  },
 };
