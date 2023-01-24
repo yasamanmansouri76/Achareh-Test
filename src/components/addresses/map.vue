@@ -21,10 +21,6 @@
     >
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-marker :lat-lng="withTooltip"></l-marker>
-      <!-- <l-marker :lat-lng="withTooltip" :icon="icon" /> -->
-      <!-- <l-marker :lat-lng="withTooltip">
-        <l-icon icon-url="@/assets/img/map-icon.png" />
-      </l-marker> -->
     </l-map>
     <div class="btn-container p-3">
       <b-button
